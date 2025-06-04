@@ -1,8 +1,8 @@
 # Sandbox Laravel Package
 
-[![CI](https://github.com/rumenx/sandbox-laravel-package/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/rumenx/sandbox-laravel-package/actions/workflows/ci.yml)
-[![PHPStan](https://github.com/rumenx/sandbox-laravel-package/actions/workflows/phpstan.yml/badge.svg?branch=master)](https://github.com/rumenx/sandbox-laravel-package/actions/workflows/phpstan.yml)
-[![codecov](https://codecov.io/gh/rumenx/sandbox-laravel-package/branch/master/graph/badge.svg?token=YOUR_CODECOV_TOKEN)](https://codecov.io/gh/rumenx/sandbox-laravel-package)
+[![CI](https://github.com/RumenDamyanov/sandbox-laravel-package/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/RumenDamyanov/sandbox-laravel-package/actions/workflows/ci.yml)
+[![PHPStan](https://github.com/RumenDamyanov/sandbox-laravel-package/actions/workflows/phpstan.yml/badge.svg?branch=master)](https://github.com/RumenDamyanov/sandbox-laravel-package/actions/workflows/phpstan.yml)
+[![codecov](https://codecov.io/gh/RumenDamyanov/sandbox-laravel-package/branch/master/graph/badge.svg?token=V7HYUWIDMD)](https://codecov.io/gh/RumenDamyanov/sandbox-laravel-package)
 
 A modern, well-tested, and fully-featured example Laravel package for demonstration, experimentation, and as a starting point for your own packages. This project follows best practices for Laravel package development, including advanced testing, static analysis, and CI integration.
 

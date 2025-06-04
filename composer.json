@@ -24,7 +24,10 @@
     "autoload": {
         "psr-4": {
             "Rumenx\\SandboxLaravelPackage\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -34,6 +37,6 @@
     "scripts": {
         "test": "pest",
         "analyze": "phpstan analyze src",
-        "coverage": "pest --coverage --coverage-clover=coverage.xml"
+        "coverage": "pest --coverage --coverage-clover=coverage/clover.xml"
     }
 }

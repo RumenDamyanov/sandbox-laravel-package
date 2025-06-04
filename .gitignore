@@ -1,10 +1,12 @@
 # Ignore IDE and editor folders
 .vscode/
+.idea/
 
 # Ignore Composer dependencies
 /vendor/
 
 # Ignore test and coverage outputs
+/coverage/
 /coverage.xml
 /.phpunit.result.cache
 /pest-results.json

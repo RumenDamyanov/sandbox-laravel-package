@@ -1,4 +1,5 @@
 <?php
+
 // Main service provider for the Sandbox Laravel Package
 // Handles config publishing and merging for Laravel applications
 
@@ -32,12 +33,5 @@ class SandboxLaravelPackageServiceProvider extends ServiceProvider
             __DIR__.'/../config/sandbox-laravel-package.php',
             'sandbox-laravel-package'
         );
-    }
-}
-
-// Helper for config_path to support non-Laravel environments (e.g., during testing)
-if (!function_exists('config_path')) {
-    function config_path($path = '') {
-        return __DIR__ . '/../config' . ($path ? DIRECTORY_SEPARATOR . $path : $path);
     }
 }

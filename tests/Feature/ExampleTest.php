@@ -20,21 +20,6 @@ test('config is published correctly', function () {
     expect($config['enabled'])->toBeTrue();
 });
 
-// Test the config_path helper returns the correct path for a given filename
-
-test('config_path helper returns correct path', function () {
-    $expected = realpath(__DIR__ . '/../../config') . DIRECTORY_SEPARATOR . 'sandbox-laravel-package.php';
-    $actual = call_user_func(function () {
-        if (!function_exists('config_path')) {
-            function config_path($path = '') {
-                return __DIR__ . '/../../config' . ($path ? DIRECTORY_SEPARATOR . $path : $path);
-            }
-        }
-        return config_path('sandbox-laravel-package.php');
-    });
-    expect($actual)->toContain('sandbox-laravel-package.php');
-});
-
 // Test that the ServiceProvider's register method is public and callable
 
 test('ServiceProvider merges config', function () {
@@ -53,34 +38,43 @@ test('ServiceProvider boot method is callable', function () {
     expect($method->isPublic())->toBeTrue();
 });
 
-// Test config_path helper with and without arguments
-// Ensures both cases return a string and the correct file path
-
-test('config_path handles empty and non-empty input', function () {
-    $base = realpath(__DIR__ . '/../../config');
-    $with = call_user_func(function () {
-        if (!function_exists('config_path')) {
-            function config_path($path = '') {
-                return __DIR__ . '/../../config' . ($path ? DIRECTORY_SEPARATOR . $path : $path);
-            }
-        }
-        return config_path('sandbox-laravel-package.php');
-    });
-    $without = call_user_func(function () {
-        if (!function_exists('config_path')) {
-            function config_path($path = '') {
-                return __DIR__ . '/../../config' . ($path ? DIRECTORY_SEPARATOR . $path : $path);
-            }
-        }
-        return config_path();
-    });
-    expect($with)->toContain('sandbox-laravel-package.php');
-    expect($without)->toBeString();
-});
-
 // Edge case: Ensure missing config file is handled gracefully
 
 test('edge case: config file missing', function () {
     $missingPath = __DIR__ . '/../../config/does-not-exist.php';
     expect(file_exists($missingPath))->toBeFalse();
+});
+
+test('ServiceProvider boot publishes config', function () {
+    // Create a mock application with config_path
+    $provider = new \Rumenx\SandboxLaravelPackage\SandboxLaravelPackageServiceProvider(null);
+    // We can't test Laravel's publishes directly, but we can check the method runs without error
+    $provider->boot();
+    expect(true)->toBeTrue(); // If no exception, boot is covered
+});
+
+// Remove or skip the failing test that calls register() with null app
+// test('ServiceProvider register merges config', function () {
+//     $provider = new \Rumenx\SandboxLaravelPackage\SandboxLaravelPackageServiceProvider(null);
+//     $provider->register();
+//     expect(true)->toBeTrue(); // If no exception, register is covered
+// });
+
+test('ServiceProvider register merges config (mocked app)', function () {
+    // Create a mock app with a config repository
+    $mockConfig = new class {
+        public $set = [];
+        public function get($key, $default = null) { return []; }
+        public function set($key, $value) { $this->set[$key] = $value; }
+    };
+    $mockApp = new class($mockConfig) {
+        public $config;
+        public function __construct($config) { $this->config = $config; }
+        public function make($what) { if ($what === 'config') return $this->config; }
+        public function configurationIsCached() { return false; }
+    };
+    $provider = new \Rumenx\SandboxLaravelPackage\SandboxLaravelPackageServiceProvider($mockApp);
+    // Call register with a mock app to avoid null error
+    $provider->register();
+    expect($mockConfig->set)->toHaveKey('sandbox-laravel-package');
 });
