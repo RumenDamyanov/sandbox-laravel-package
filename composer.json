@@ -1,0 +1,39 @@
+{
+    "name": "rumen/sandbox-laravel-package",
+    "description": "A sandbox example Laravel package",
+    "type": "library",
+    "require": {
+        "illuminate/support": "^11.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rumen Damyanov",
+            "email": "contact@rumenx.com"
+        }
+    ],
+    "require-dev": {
+        "pestphp/pest": "^3.8",
+        "phpstan/phpstan": "^2.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Rumenx\\SandboxLaravelPackage\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rumenx\\SandboxLaravelPackage\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "analyze": "phpstan analyze src",
+        "coverage": "pest --coverage --coverage-clover=coverage.xml"
+    }
+}

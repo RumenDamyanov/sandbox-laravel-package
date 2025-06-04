@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Test",
+            "type": "shell",
+            "command": "composer test",
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Analyze",
+            "type": "shell",
+            "command": "composer analyze",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Coverage",
+            "type": "shell",
+            "command": "composer coverage",
+            "group": "test",
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+# Ignore IDE and editor folders
+.vscode/
+
+# Ignore Composer dependencies
+/vendor/
+
+# Ignore test and coverage outputs
+/coverage.xml
+/.phpunit.result.cache
+/pest-results.json
+
+# Ignore OS generated files
+.DS_Store
